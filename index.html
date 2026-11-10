@@ -2,81 +2,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STUDIO ZERO | Portfolio</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #080808;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-    nav {
-      padding: 25px 8%;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #292929;
-    }
-    .hero {
-      min-height: 65vh;
-      padding: 100px 8%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .hero p { color: #aaa; }
-    h1 {
-      font-size: clamp(45px, 9vw, 100px);
-      margin: 15px 0;
-    }
-    .projects {
-      padding: 40px 8% 100px;
-    }
-    .project {
-      background: #171717;
-      border: 1px solid #333;
-      padding: 30px;
-      margin: 20px 0;
-      border-radius: 12px;
-    }
-    a { color: white; }
-    .project a { color: #aaa; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUDIO ZERO — Digital Experiences</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #05050a;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 75% 20%, #24105255, transparent 45%),
+    radial-gradient(ellipse at 15% 65%, #082a5350, transparent 45%);
+}
+
+nav {
+  padding: 25px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ffffff15;
+  position: relative;
+  z-index: 5;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+nav a {
+  color: #bbb;
+  text-decoration: none;
+  margin-left: 22px;
+  font-size: 13px;
+}
+
+nav a:hover { color: #9b8cff; }
+
+.hero {
+  min-height: 670px;
+  padding: 100px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.hero-content { max-width: 650px; }
+
+.tag {
+  color: #a99aff;
+  letter-spacing: 4px;
+  font-size: 11px;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: clamp(52px, 8vw, 100px);
+  line-height: .95;
+  letter-spacing: -5px;
+}
+
+.gradient {
+  background: linear-gradient(100deg, #8c7bff, #55d9ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  color: #999;
+  line-height: 1.8;
+  margin-top: 25px;
+  max-width: 430px;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 35px;
+  padding: 15px 25px;
+  border-radius: 7px;
+  background: linear-gradient(100deg, #735bff, #268dff);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 35px #715cff66;
+}
+
+/* Animated 3D orb */
+
+.orb-scene {
+  width: min(340px, 80vw);
+  aspect-ratio: 1;
+  perspective: 900px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.orb {
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  position: relative;
+  background:
+    radial-gradient(circle at 30% 25%, #d8d1ff, transparent 12%),
+    radial-gradient(circle at 35% 30%, #7e63ff, #29216c 35%, #070b20 70%);
+  box-shadow:
+    inset -20px -20px 45px #02030d,
+    inset 10px 10px 35px #b8aaff88,
+    0 0 55px #6e52ff99,
+    0 0 110px #285dff55;
+  animation: float 5s ease-in-out infinite,
+             rotate 15s linear infinite;
+}
+
+.orb::before {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  border: 2px solid #8f7bff99;
+  border-radius: 50%;
+  transform: rotateX(70deg);
+  box-shadow: 0 0 20px #846bff66;
+}
+
+.orb::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  border: 1px solid #54caff66;
+  border-radius: 50%;
+  transform: rotateY(65deg) rotateX(35deg);
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-22px) rotate(8deg); }
+}
+
+@keyframes rotate {
+  to { filter: hue-rotate(30deg); }
+}
+
+section { padding: 90px 8%; }
+
+.section-label {
+  color: #9d8cff;
+  letter-spacing: 4px;
+  font-size: 11px;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: clamp(32px, 5vw, 52px);
+  margin-bottom: 40px;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+.project {
+  padding: 28px;
+  min-height: 250px;
+  border: 1px solid #ffffff19;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #171528, #0b0b12);
+  transition: transform .3s, border-color .3s;
+  transform-style: preserve-3d;
+}
+
+.project:hover {
+  transform: translateY(-9px) perspective(700px) rotateX(3deg);
+  border-color: #8170ff;
+}
+
+.project-number {
+  color: #8c7cff;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.project h3 {
+  margin: 35px 0 12px;
+  font-size: 23px;
+}
+
+.project p {
+  color: #999;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.project a {
+  display: inline-block;
+  margin-top: 25px;
+  color: #a99aff;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.about {
+  background: #ffffff06;
+  border-top: 1px solid #ffffff12;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.about p {
+  max-width: 650px;
+  color: #aaa;
+  line-height: 1.9;
+}
+
+.contact {
+  text-align: center;
+}
+
+.contact p {
+  color: #aaa;
+  margin-top: 15px;
+}
+
+footer {
+  padding: 30px 8%;
+  border-top: 1px solid #ffffff15;
+  color: #777;
+  font-size: 12px;
+  text-align: center;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .7s, transform .7s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media(max-width: 700px) {
+  nav { padding: 20px 5%; }
+  nav a { margin-left: 10px; font-size: 11px; }
+  .hero {
+    padding: 75px 7%;
+    flex-direction: column;
+    text-align: center;
+  }
+  .subtitle { margin-left: auto; margin-right: auto; }
+  .orb-scene { margin-top: 30px; }
+  section { padding: 70px 7%; }
+  h1 { letter-spacing: -3px; }
+}
+</style>
 </head>
+
 <body>
-  <nav>
-    <strong>STUDIO ZERO.</strong>
-    <span>PORTFOLIO / 2026</span>
-  </nav>
 
-  <section class="hero">
-    <p>INDEPENDENT WEB DESIGNER</p>
-    <h1>WE BUILD<br>DIGITAL<br>EXPERIENCES.</h1>
-    <p>Creative websites. Bold ideas. Digital experiences.</p>
-  </section>
+<nav>
+  <div class="logo">STUDIO ZERO.</div>
+  <div>
+    <a href="#projects">WORK</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+</nav>
 
-  <section class="projects">
-    <h2>SELECTED PROJECTS</h2>
+<header class="hero">
+  <div class="hero-content">
+    <div class="tag">INDEPENDENT DIGITAL STUDIO</div>
+    <h1>WE BUILD<br><span class="gradient">DIGITAL</span><br>WORLDS.</h1>
+    <p class="subtitle">
+      We create immersive websites and unforgettable digital
+      experiences through design, technology and creativity.
+    </p>
+    <a href="#projects" class="cta">EXPLORE OUR WORK ↗</a>
+  </div>
 
-    <div class="project">
-      <h3>01 — 3D EXPERIENCE</h3>
-      <p>Interactive 3D website.</p>
-      <a href="#">Coming soon</a>
-    </div>
+  <div class="orb-scene">
+    <div class="orb"></div>
+  </div>
+</header>
 
-    <div class="project">
-      <h3>02 — RESTAURANT</h3>
-      <p>Modern restaurant website.</p>
-      <a href="#">Coming soon</a>
-    </div>
+<section id="projects">
+  <div class="section-label">01 / OUR WORK</div>
+  <h2 class="reveal">Selected Projects.</h2>
 
-    <div class="project">
-      <h3>03 — SNEAKER STORE</h3>
-      <p>Premium ecommerce concept.</p>
-      <a href="#">Coming soon</a>
-    </div>
-  </section>
+  <div class="projects">
+    <article class="project reveal">
+      <div class="project-number">PROJECT 01</div>
+      <h3>3D EXPERIENCE</h3>
+      <p>An immersive interactive 3D web experience.</p>
+      <a href="#">COMING SOON ↗</a>
+    </article>
+
+    <article class="project reveal">
+      <div class="project-number">PROJECT 02</div>
+      <h3>THE RESTAURANT</h3>
+      <p>A premium digital experience for a restaurant.</p>
+      <a href="#">COMING SOON ↗</a>
+    </article>
+
+    <article class="project reveal">
+      <div class="project-number">PROJECT 03</div>
+      <h3>SOLE STUDIO</h3>
+      <p>A futuristic sneaker shopping experience.</p>
+      <a href="#">COMING SOON ↗</a>
+    </article>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-label">02 / WHO WE ARE</div>
+  <h2 class="reveal">Beyond ordinary.</h2>
+  <p class="reveal">
+    STUDIO ZERO is an independent creative web studio focused
+    on building visually striking and functional digital
+    experiences. We believe every website should leave an
+    impression.
+  </p>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-label">03 / GET IN TOUCH</div>
+  <h2 class="reveal">Have a project<br><span class="gradient">in mind?</span></h2>
+  <p>Let's create something extraordinary.</p>
+  <a href="mailto:YOUR-EMAIL-HERE" class="cta">CONTACT US ↗</a>
+</section>
+
+<footer>
+  © 2026 STUDIO ZERO. ALL RIGHTS RESERVED.
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
+</script>
+
 </body>
 </html>
